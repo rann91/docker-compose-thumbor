@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+  server:
+    container_name: thumbor-server
+    image: minimalcompact/thumbor
+    restart: always
+    volumes:
+      - ./data:/data
+    environment:
+      - SECURITY_KEY
+      - ALLOW_UNSAFE_URL
+      - LOADER
+      - ALLOWED_SOURCES
+      - STORAGE
+      - RESULT_STORAGE
+      - RESULT_STORAGE_EXPIRATION_SECONDS
+      - RESULT_STORAGE_STORES_UNSAFE
+      - AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY
+      - TC_AWS_ENDPOINT
+      - TC_AWS_STORAGE_BUCKET
+      - TC_AWS_STORAGE_ROOT_PATH
+      - TC_AWS_RESULT_STORAGE_BUCKET
+      - TC_AWS_RESULT_STORAGE_ROOT_PATH
+
+networks:
+  default:
+    external:
+      name: nginx-proxy
